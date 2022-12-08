@@ -2,13 +2,16 @@
 @include form-control-placeholder(#6c757c, 1);
 
 .form-control{
+  color: $default;
   border-color: lighten($black,5%);
   border-radius: $border-radius-lg;
   font-size: $font-size-sm;
+  font-family: $font-family-kanit;
   @include transition-input-focus-color();
 
 
   &:focus{
+    color: $black;
     border-color: $primary;
     background-color: $input-bg;
     @include box-shadow(none);
