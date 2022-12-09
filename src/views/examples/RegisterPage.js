@@ -36,6 +36,11 @@ import {
   Container,
   Row,
   Col,
+  Dropdown,
+  DropdownToggle,
+  DropdownMenu,
+  DropdownItem,
+  UncontrolledDropdown,
 } from "reactstrap"
 import ReactDatetime from "react-datetime"
 
@@ -91,12 +96,12 @@ export default function RegisterPage() {
     <>
       <ExamplesNavbar />
       <div className="wrapper">
-        <div className="page-header">
+        <div className="page-header-register">
           <div className="page-header-image" />
           <div className="content">
             <Container>
               <Row>
-                <Col className="offset-lg-0 offset-md-3" lg="5" md="6">
+                <Col className="offset-lg-1 offset-md-1" lg="10" md="10">
                   <div
                     className="square square-7"
                     id="square7"
@@ -118,276 +123,481 @@ export default function RegisterPage() {
                     <CardBody>
                       <Form className="form">
                         <Row>
-                          <Col lg="12">
-                            <Label className="mb-0 cd-header">
-                              ข้อมูลส่วนตัว
-                            </Label>
-                            <hr className="line-primary mt-1" />
+                          <Col lg="6">
+                            <Row>
+                              <Col lg="12">
+                                <Label className="mb-0 cd-header">
+                                  ข้อมูลส่วนตัว
+                                </Label>
+                                <hr className="line-primary mt-1" />
+                              </Col>
+                              <Col lg="12">
+                                <InputGroup
+                                  className={classnames({
+                                    "input-group-focus": fNameTHFocus,
+                                  })}
+                                >
+                                  <InputGroupAddon addonType="prepend">
+                                    <InputGroupText>
+                                      <i className="tim-icons icon-single-02" />
+                                    </InputGroupText>
+                                  </InputGroupAddon>
+                                  <Input
+                                    placeholder="ชื่อ-นามสกุล (TH)"
+                                    type="text"
+                                    onFocus={(e) => setFNameTHFocus(true)}
+                                    onBlur={(e) => setFNameTHFocus(false)}
+                                  />
+                                </InputGroup>
+                              </Col>
+                              <Col lg="12">
+                                <InputGroup
+                                  className={classnames({
+                                    "input-group-focus": fNameENFocus,
+                                  })}
+                                >
+                                  <InputGroupAddon addonType="prepend">
+                                    <InputGroupText>
+                                      <i className="tim-icons icon-single-02" />
+                                    </InputGroupText>
+                                  </InputGroupAddon>
+                                  <Input
+                                    placeholder="ชื่อ-นามสกุล (EN)"
+                                    type="text"
+                                    onFocus={(e) => setFNameENFocus(true)}
+                                    onBlur={(e) => setFNameENFocus(false)}
+                                  />
+                                </InputGroup>
+                              </Col>
+                              <Col lg="6" xs="6">
+                                <InputGroup
+                                  className={classnames({
+                                    "input-group-focus": nickNameFocus,
+                                  })}
+                                >
+                                  <InputGroupAddon addonType="prepend">
+                                    <InputGroupText>
+                                      <i className="tim-icons icon-single-02" />
+                                    </InputGroupText>
+                                  </InputGroupAddon>
+                                  <Input
+                                    placeholder="ชื่อเล่น"
+                                    type="text"
+                                    onFocus={(e) => setNickNameFocus(true)}
+                                    onBlur={(e) => setNickNameFocus(false)}
+                                  />
+                                </InputGroup>
+                              </Col>
+                              <Col lg="6" xs="6">
+                                <InputGroup
+                                  className={classnames({
+                                    "input-group-focus": telFocus,
+                                  })}
+                                >
+                                  <InputGroupAddon addonType="prepend">
+                                    <InputGroupText>
+                                      <i className="tim-icons icon-mobile" />
+                                    </InputGroupText>
+                                  </InputGroupAddon>
+                                  <Input
+                                    placeholder="เบอร์โทรศัพท์"
+                                    type="text"
+                                    onFocus={(e) => setTelFocus(true)}
+                                    onBlur={(e) => setTelFocus(false)}
+                                  />
+                                </InputGroup>
+                              </Col>
+                              <Col md="6">
+                                <div className="datepicker-container">
+                                  <FormGroup>
+                                    <ReactDatetime
+                                      inputProps={{
+                                        className: "form-control",
+                                        placeholder: "วันเกิด",
+                                      }}
+                                    />
+                                  </FormGroup>
+                                </div>
+                              </Col>
+                              <Col md="6" xs="hide"></Col>
+                              <Col lg="6" xs="6">
+                                <InputGroup
+                                  className={classnames({
+                                    "input-group-focus": fbFocus,
+                                  })}
+                                >
+                                  <InputGroupAddon addonType="prepend">
+                                    <InputGroupText>
+                                      <i className="tim-icons icon-single-02" />
+                                    </InputGroupText>
+                                  </InputGroupAddon>
+                                  <Input
+                                    placeholder="Facebook"
+                                    type="text"
+                                    onFocus={(e) => setFbFocus(true)}
+                                    onBlur={(e) => setFbFocus(false)}
+                                  />
+                                </InputGroup>
+                              </Col>
+                              <Col lg="6" xs="6">
+                                <InputGroup
+                                  className={classnames({
+                                    "input-group-focus": emailFocus,
+                                  })}
+                                >
+                                  <InputGroupAddon addonType="prepend">
+                                    <InputGroupText>
+                                      <i className="tim-icons icon-single-02" />
+                                    </InputGroupText>
+                                  </InputGroupAddon>
+                                  <Input
+                                    placeholder="Email"
+                                    type="text"
+                                    onFocus={(e) => setEmailFocus(true)}
+                                    onBlur={(e) => setEmailFocus(false)}
+                                  />
+                                </InputGroup>
+                              </Col>
+                              <Col lg="6" xs="6">
+                                <InputGroup
+                                  className={classnames({
+                                    "input-group-focus": igFocus,
+                                  })}
+                                >
+                                  <InputGroupAddon addonType="prepend">
+                                    <InputGroupText>
+                                      <i className="tim-icons icon-single-02" />
+                                    </InputGroupText>
+                                  </InputGroupAddon>
+                                  <Input
+                                    placeholder="Instagram"
+                                    type="text"
+                                    onFocus={(e) => setIgFocus(true)}
+                                    onBlur={(e) => setIgFocus(false)}
+                                  />
+                                </InputGroup>
+                              </Col>
+                              <Col lg="6" xs="6">
+                                <InputGroup
+                                  className={classnames({
+                                    "input-group-focus": lineFocus,
+                                  })}
+                                >
+                                  <InputGroupAddon addonType="prepend">
+                                    <InputGroupText>
+                                      <i className="tim-icons icon-single-02" />
+                                    </InputGroupText>
+                                  </InputGroupAddon>
+                                  <Input
+                                    placeholder="Line"
+                                    type="text"
+                                    onFocus={(e) => setLineFocus(true)}
+                                    onBlur={(e) => setLineFocus(false)}
+                                  />
+                                </InputGroup>
+                              </Col>
+                              <Col lg="6" xs="6">
+                                <InputGroup
+                                  className={classnames({
+                                    "input-group-focus": ldFocus,
+                                  })}
+                                >
+                                  <InputGroupAddon addonType="prepend">
+                                    <InputGroupText>
+                                      <i className="tim-icons icon-single-02" />
+                                    </InputGroupText>
+                                  </InputGroupAddon>
+                                  <Input
+                                    placeholder="Linked In"
+                                    type="text"
+                                    onFocus={(e) => setLdFocus(true)}
+                                    onBlur={(e) => setLdFocus(false)}
+                                  />
+                                </InputGroup>
+                              </Col>
+                              <Col lg="12">
+                                <Label className="mb-0 mt-1 cd-header">
+                                  ที่อยู่
+                                </Label>
+                                <hr className="line-primary mt-1" />
+                              </Col>
+                              <Col lg="6" xs="6">
+                                <InputGroup
+                                  className={classnames({
+                                    "input-group-focus": prov,
+                                  })}
+                                >
+                                  <InputGroupAddon addonType="prepend">
+                                    <InputGroupText>
+                                      <i className="tim-icons icon-square-pin" />
+                                    </InputGroupText>
+                                  </InputGroupAddon>
+                                  <Input
+                                    placeholder="จังหวัด"
+                                    type="text"
+                                    onFocus={(e) => setProv(true)}
+                                    onBlur={(e) => setProv(false)}
+                                  />
+                                </InputGroup>
+                              </Col>
+                              <Col lg="6" xs="6">
+                                <InputGroup
+                                  className={classnames({
+                                    "input-group-focus": dist,
+                                  })}
+                                >
+                                  <InputGroupAddon addonType="prepend">
+                                    <InputGroupText>
+                                      <i className="tim-icons icon-square-pin" />
+                                    </InputGroupText>
+                                  </InputGroupAddon>
+                                  <Input
+                                    placeholder="อำเภอ"
+                                    type="text"
+                                    onFocus={(e) => setDist(true)}
+                                    onBlur={(e) => setDist(false)}
+                                  />
+                                </InputGroup>
+                              </Col>
+                              <Col lg="6" xs="6">
+                                <InputGroup
+                                  className={classnames({
+                                    "input-group-focus": sDist,
+                                  })}
+                                >
+                                  <InputGroupAddon addonType="prepend">
+                                    <InputGroupText>
+                                      <i className="tim-icons icon-square-pin" />
+                                    </InputGroupText>
+                                  </InputGroupAddon>
+                                  <Input
+                                    placeholder="ตำบล"
+                                    type="text"
+                                    onFocus={(e) => setSDist(true)}
+                                    onBlur={(e) => setSDist(false)}
+                                  />
+                                </InputGroup>
+                              </Col>
+                              <Col lg="6" xs="6">
+                                <InputGroup
+                                  className={classnames({
+                                    "input-group-focus": zipCode,
+                                  })}
+                                >
+                                  <InputGroupAddon addonType="prepend">
+                                    <InputGroupText>
+                                      <i className="tim-icons icon-square-pin" />
+                                    </InputGroupText>
+                                  </InputGroupAddon>
+                                  <Input
+                                    placeholder="รหัสไปรษณีย์"
+                                    type="text"
+                                    onFocus={(e) => setZipCode(true)}
+                                    onBlur={(e) => setZipCode(false)}
+                                  />
+                                </InputGroup>
+                              </Col>
+                            </Row>
                           </Col>
-                          <Col lg="12">
-                            <InputGroup
-                              className={classnames({
-                                "input-group-focus": fNameTHFocus,
-                              })}
-                            >
-                              <InputGroupAddon addonType="prepend">
-                                <InputGroupText>
-                                  <i className="tim-icons icon-single-02" />
-                                </InputGroupText>
-                              </InputGroupAddon>
-                              <Input
-                                placeholder="ชื่อ-นามสกุล (TH)"
-                                type="text"
-                                onFocus={(e) => setFNameTHFocus(true)}
-                                onBlur={(e) => setFNameTHFocus(false)}
-                              />
-                            </InputGroup>
-                          </Col>
-                          <Col lg="12">
-                            <InputGroup
-                              className={classnames({
-                                "input-group-focus": fNameENFocus,
-                              })}
-                            >
-                              <InputGroupAddon addonType="prepend">
-                                <InputGroupText>
-                                  <i className="tim-icons icon-single-02" />
-                                </InputGroupText>
-                              </InputGroupAddon>
-                              <Input
-                                placeholder="ชื่อ-นามสกุล (EN)"
-                                type="text"
-                                onFocus={(e) => setFNameENFocus(true)}
-                                onBlur={(e) => setFNameENFocus(false)}
-                              />
-                            </InputGroup>
-                          </Col>
-                          <Col lg="6" xs="6">
-                            <InputGroup
-                              className={classnames({
-                                "input-group-focus": nickNameFocus,
-                              })}
-                            >
-                              <InputGroupAddon addonType="prepend">
-                                <InputGroupText>
-                                  <i className="tim-icons icon-single-02" />
-                                </InputGroupText>
-                              </InputGroupAddon>
-                              <Input
-                                placeholder="ชื่อเล่น"
-                                type="text"
-                                onFocus={(e) => setNickNameFocus(true)}
-                                onBlur={(e) => setNickNameFocus(false)}
-                              />
-                            </InputGroup>
-                          </Col>
-                          <Col lg="6" xs="6">
-                            <InputGroup
-                              className={classnames({
-                                "input-group-focus": telFocus,
-                              })}
-                            >
-                              <InputGroupAddon addonType="prepend">
-                                <InputGroupText>
-                                  <i className="tim-icons icon-mobile" />
-                                </InputGroupText>
-                              </InputGroupAddon>
-                              <Input
-                                placeholder="เบอร์โทร"
-                                type="text"
-                                onFocus={(e) => setTelFocus(true)}
-                                onBlur={(e) => setTelFocus(false)}
-                              />
-                            </InputGroup>
-                          </Col>
-                          <Col md="12">
-                            <div className="datepicker-container">
-                              <FormGroup>
-                                <ReactDatetime
-                                  inputProps={{
-                                    className: "form-control",
-                                    placeholder: "วันเกิด",
-                                  }}
-                                />
-                              </FormGroup>
-                            </div>
-                          </Col>
-                          <Col lg="12">
-                            <InputGroup
-                              className={classnames({
-                                "input-group-focus": fbFocus,
-                              })}
-                            >
-                              <InputGroupAddon addonType="prepend">
-                                <InputGroupText>
-                                  <i className="tim-icons icon-single-02" />
-                                </InputGroupText>
-                              </InputGroupAddon>
-                              <Input
-                                placeholder="Facebook"
-                                type="text"
-                                onFocus={(e) => setFbFocus(true)}
-                                onBlur={(e) => setFbFocus(false)}
-                              />
-                            </InputGroup>
-                          </Col>
-                          <Col lg="12">
-                            <InputGroup
-                              className={classnames({
-                                "input-group-focus": emailFocus,
-                              })}
-                            >
-                              <InputGroupAddon addonType="prepend">
-                                <InputGroupText>
-                                  <i className="tim-icons icon-single-02" />
-                                </InputGroupText>
-                              </InputGroupAddon>
-                              <Input
-                                placeholder="Email"
-                                type="text"
-                                onFocus={(e) => setEmailFocus(true)}
-                                onBlur={(e) => setEmailFocus(false)}
-                              />
-                            </InputGroup>
-                          </Col>
-                          <Col lg="6" xs="6">
-                            <InputGroup
-                              className={classnames({
-                                "input-group-focus": igFocus,
-                              })}
-                            >
-                              <InputGroupAddon addonType="prepend">
-                                <InputGroupText>
-                                  <i className="tim-icons icon-single-02" />
-                                </InputGroupText>
-                              </InputGroupAddon>
-                              <Input
-                                placeholder="Instagram"
-                                type="text"
-                                onFocus={(e) => setIgFocus(true)}
-                                onBlur={(e) => setIgFocus(false)}
-                              />
-                            </InputGroup>
-                          </Col>
-                          <Col lg="6" xs="6">
-                            <InputGroup
-                              className={classnames({
-                                "input-group-focus": lineFocus,
-                              })}
-                            >
-                              <InputGroupAddon addonType="prepend">
-                                <InputGroupText>
-                                  <i className="tim-icons icon-single-02" />
-                                </InputGroupText>
-                              </InputGroupAddon>
-                              <Input
-                                placeholder="Line"
-                                type="text"
-                                onFocus={(e) => setLineFocus(true)}
-                                onBlur={(e) => setLineFocus(false)}
-                              />
-                            </InputGroup>
-                          </Col>
-                          <Col lg="6" xs="6">
-                            <InputGroup
-                              className={classnames({
-                                "input-group-focus": ldFocus,
-                              })}
-                            >
-                              <InputGroupAddon addonType="prepend">
-                                <InputGroupText>
-                                  <i className="tim-icons icon-single-02" />
-                                </InputGroupText>
-                              </InputGroupAddon>
-                              <Input
-                                placeholder="Linked In"
-                                type="text"
-                                onFocus={(e) => setLdFocus(true)}
-                                onBlur={(e) => setLdFocus(false)}
-                              />
-                            </InputGroup>
-                          </Col>
-                        </Row>
-                        <Row>
-                          <Col lg="12">
-                            <Label className="mb-0 cd-header">ที่อยู่</Label>
-                            <hr className="line-primary mt-1" />
-                          </Col>
-                          <Col lg="6" xs="6">
-                            <InputGroup
-                              className={classnames({
-                                "input-group-focus": prov,
-                              })}
-                            >
-                              <InputGroupAddon addonType="prepend">
-                                <InputGroupText>
-                                  <i className="tim-icons icon-square-pin" />
-                                </InputGroupText>
-                              </InputGroupAddon>
-                              <Input
-                                placeholder="จังหวัด"
-                                type="text"
-                                onFocus={(e) => setProv(true)}
-                                onBlur={(e) => setProv(false)}
-                              />
-                            </InputGroup>
-                          </Col>
-                          <Col lg="6" xs="6">
-                            <InputGroup
-                              className={classnames({
-                                "input-group-focus": dist,
-                              })}
-                            >
-                              <InputGroupAddon addonType="prepend">
-                                <InputGroupText>
-                                  <i className="tim-icons icon-square-pin" />
-                                </InputGroupText>
-                              </InputGroupAddon>
-                              <Input
-                                placeholder="อำเภอ"
-                                type="text"
-                                onFocus={(e) => setDist(true)}
-                                onBlur={(e) => setDist(false)}
-                              />
-                            </InputGroup>
-                          </Col>
-                          <Col lg="6" xs="6">
-                            <InputGroup
-                              className={classnames({
-                                "input-group-focus": sDist,
-                              })}
-                            >
-                              <InputGroupAddon addonType="prepend">
-                                <InputGroupText>
-                                  <i className="tim-icons icon-square-pin" />
-                                </InputGroupText>
-                              </InputGroupAddon>
-                              <Input
-                                placeholder="ตำบล"
-                                type="text"
-                                onFocus={(e) => setSDist(true)}
-                                onBlur={(e) => setSDist(false)}
-                              />
-                            </InputGroup>
-                          </Col>
-                          <Col lg="6" xs="6">
-                            <InputGroup
-                              className={classnames({
-                                "input-group-focus": zipCode,
-                              })}
-                            >
-                              <InputGroupAddon addonType="prepend">
-                                <InputGroupText>
-                                  <i className="tim-icons icon-square-pin" />
-                                </InputGroupText>
-                              </InputGroupAddon>
-                              <Input
-                                placeholder="รหัสไปรษณีย์"
-                                type="text"
-                                onFocus={(e) => setZipCode(true)}
-                                onBlur={(e) => setZipCode(false)}
-                              />
-                            </InputGroup>
+                          <Col lg="6">
+                            <Row>
+                              <Col lg="12">
+                                <Label className="mb-0 cd-header">
+                                  รายละเอียดเพิ่มเติม
+                                </Label>
+                                <hr className="line-primary mt-1" />
+                              </Col>
+                              <Col lg="5">
+                                <InputGroup
+                                  className={classnames({
+                                    "input-group-focus": prov,
+                                  })}
+                                >
+                                  <InputGroupAddon addonType="prepend">
+                                    <InputGroupText>
+                                      <i className="tim-icons icon-square-pin" />
+                                    </InputGroupText>
+                                  </InputGroupAddon>
+                                  <Input
+                                    placeholder="วุฒิการศึกษา"
+                                    type="text"
+                                    onFocus={(e) => setProv(true)}
+                                    onBlur={(e) => setProv(false)}
+                                  />
+                                </InputGroup>
+                              </Col>
+                              <Col lg="7">
+                                <InputGroup
+                                  className={classnames({
+                                    "input-group-focus": dist,
+                                  })}
+                                >
+                                  <InputGroupAddon addonType="prepend">
+                                    <InputGroupText>
+                                      <i className="tim-icons icon-square-pin" />
+                                    </InputGroupText>
+                                  </InputGroupAddon>
+                                  <Input
+                                    placeholder="สถานศึกษา"
+                                    type="text"
+                                    onFocus={(e) => setDist(true)}
+                                    onBlur={(e) => setDist(false)}
+                                  />
+                                </InputGroup>
+                              </Col>
+                              <Col lg="12">
+                                <InputGroup
+                                  className={classnames({
+                                    "input-group-focus": sDist,
+                                  })}
+                                >
+                                  <InputGroupAddon addonType="prepend">
+                                    <InputGroupText>
+                                      <i className="tim-icons icon-square-pin" />
+                                    </InputGroupText>
+                                  </InputGroupAddon>
+                                  <Input
+                                    placeholder="คณะ/สาขาวิชา"
+                                    type="text"
+                                    onFocus={(e) => setSDist(true)}
+                                    onBlur={(e) => setSDist(false)}
+                                  />
+                                </InputGroup>
+                              </Col>
+                              <Col lg="12">
+                                <InputGroup
+                                  className={classnames({
+                                    "input-group-focus": zipCode,
+                                  })}
+                                >
+                                  <InputGroupAddon addonType="prepend">
+                                    <InputGroupText>
+                                      <i className="tim-icons icon-square-pin" />
+                                    </InputGroupText>
+                                  </InputGroupAddon>
+                                  <Input
+                                    placeholder="ความสามารถพิเศษ"
+                                    type="text"
+                                    onFocus={(e) => setZipCode(true)}
+                                    onBlur={(e) => setZipCode(false)}
+                                  />
+                                </InputGroup>
+                              </Col>
+                              <Col lg="12">
+                                <InputGroup
+                                  className={classnames({
+                                    "input-group-focus": zipCode,
+                                  })}
+                                >
+                                  <InputGroupAddon addonType="prepend">
+                                    <InputGroupText>
+                                      <i className="tim-icons icon-square-pin" />
+                                    </InputGroupText>
+                                  </InputGroupAddon>
+                                  <Input
+                                    placeholder="ประวัติการทำงาน/ ฝึกงาน (ถ้ามี)"
+                                    type="text"
+                                    onFocus={(e) => setZipCode(true)}
+                                    onBlur={(e) => setZipCode(false)}
+                                  />
+                                </InputGroup>
+                              </Col>
+                              <Col lg="12">
+                                <InputGroup
+                                  className={classnames({
+                                    "input-group-focus": zipCode,
+                                  })}
+                                >
+                                  <InputGroupAddon addonType="prepend">
+                                    <InputGroupText>
+                                      <i className="tim-icons icon-square-pin" />
+                                    </InputGroupText>
+                                  </InputGroupAddon>
+                                  <Input
+                                    placeholder="ชื่อที่ทำงาน"
+                                    type="text"
+                                    onFocus={(e) => setZipCode(true)}
+                                    onBlur={(e) => setZipCode(false)}
+                                  />
+                                </InputGroup>
+                              </Col>
+                              <Col lg="6">
+                                <InputGroup
+                                  className={classnames({
+                                    "input-group-focus": zipCode,
+                                  })}
+                                >
+                                  <InputGroupAddon addonType="prepend">
+                                    <InputGroupText>
+                                      <i className="tim-icons icon-square-pin" />
+                                    </InputGroupText>
+                                  </InputGroupAddon>
+                                  <Input
+                                    placeholder="ตำแหน่งงาน"
+                                    type="text"
+                                    onFocus={(e) => setZipCode(true)}
+                                    onBlur={(e) => setZipCode(false)}
+                                  />
+                                </InputGroup>
+                              </Col>
+                              <Col lg="6">
+                                <InputGroup
+                                  className={classnames({
+                                    "input-group-focus": zipCode,
+                                  })}
+                                >
+                                  <InputGroupAddon addonType="prepend">
+                                    <InputGroupText>
+                                      <i className="tim-icons icon-square-pin" />
+                                    </InputGroupText>
+                                  </InputGroupAddon>
+                                  <Input
+                                    placeholder="ระยะเวลาที่ทำงาน"
+                                    type="text"
+                                    onFocus={(e) => setZipCode(true)}
+                                    onBlur={(e) => setZipCode(false)}
+                                  />
+                                </InputGroup>
+                              </Col>
+                              <Col lg="12">
+                                <InputGroup
+                                  className={classnames({
+                                    "input-group-focus": zipCode,
+                                  })}
+                                >
+                                  <InputGroupAddon addonType="prepend">
+                                    <InputGroupText>
+                                      <i className="tim-icons icon-square-pin" />
+                                    </InputGroupText>
+                                  </InputGroupAddon>
+                                  <Input
+                                    placeholder="ตำแหน่งที่สนใจ"
+                                    type="text"
+                                    onFocus={(e) => setZipCode(true)}
+                                    onBlur={(e) => setZipCode(false)}
+                                  />
+                                </InputGroup>
+                              </Col>
+                              <Col lg="6">
+                                <InputGroup
+                                  className={classnames({
+                                    "input-group-focus": zipCode,
+                                  })}
+                                >
+                                  <InputGroupAddon addonType="prepend">
+                                    <InputGroupText>
+                                      <i className="tim-icons icon-square-pin" />
+                                    </InputGroupText>
+                                  </InputGroupAddon>
+                                  <Input
+                                    placeholder="เงินเดือนที่คาดหวัง"
+                                    type="text"
+                                    onFocus={(e) => setZipCode(true)}
+                                    onBlur={(e) => setZipCode(false)}
+                                  />
+                                </InputGroup>
+                              </Col>
+                            </Row>
                           </Col>
                         </Row>
                         <FormGroup check className="text-left">
