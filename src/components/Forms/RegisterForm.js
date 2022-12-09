@@ -340,14 +340,31 @@ export default function RegisterForm() {
               </InputGroup>
             </Col>
             <Col lg="6" xs="6">
-              <Select
-                className="Selector"
-                placeholder="ตำบล"
-                value={selectedTal} // set selected value
-                options={tumbon.name_th} // set list of the data
-                onChange={handleTal} // assign onChange function
-                isOptionDisabled={(option) => option.isdisabled} // disable an option
-              />
+              <InputGroup
+                className={classnames({
+                  "input-group-focus": zipCodeFocus,
+                })}
+              >
+                <InputGroupAddon addonType="prepend">
+                  <InputGroupText>
+                    <i className="tim-icons icon-square-pin" />
+                  </InputGroupText>
+                </InputGroupAddon>
+                <Input
+                  type="select"
+                  onFocus={(e) => setZipCodeFocus(true)}
+                  onBlur={(e) => setZipCodeFocus(false)}
+                  onChange={(e) => setSelectedTal(e.target.value)}
+                  disabled={tumbon.length === 0}
+                >
+                  <option value="" disabled selected>
+                    ตำบล
+                  </option>
+                  {tumbon.map((code) => {
+                    return <option key={code.name_th}>{code.name_th}</option>
+                  })}
+                </Input>
+              </InputGroup>
             </Col>
             <Col lg="6" xs="6">
               <InputGroup
@@ -550,16 +567,16 @@ export default function RegisterForm() {
                 </InputGroupAddon>
                 <Input
                   type="select"
-                  value={tumbon.name_th}
                   onFocus={(e) => setZipCodeFocus(true)}
                   onBlur={(e) => setZipCodeFocus(false)}
+                  onChange={(e) => setSelectedTal(e.target.value)}
                 >
                   <option value="" disabled selected>
-                    ตำบล
+                    ความสามารถพิเศษ
                   </option>
-                  {tumbon.map((code) => {
-                    return <option key={code.name_th}>{code.name_th}</option>
-                  })}
+                  <option>ดนตรี</option>
+                  <option>กีฬา</option>
+                  <option>งานบ้าน</option>
                 </Input>
               </InputGroup>
             </Col>
