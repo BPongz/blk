@@ -303,7 +303,7 @@ export default function ProfilePage() {
             </Row>
           </Container>
         </div>
-        <div className="section">
+        {/* <div className="section">
           <Container>
             <Row className="justify-content-between">
               <Col md="6">
@@ -342,7 +342,7 @@ export default function ProfilePage() {
               </Col>
             </Row>
           </Container>
-        </div>
+        </div> */}
         <section className="section">
           <Container>
             <Row>
@@ -350,15 +350,45 @@ export default function ProfilePage() {
                 <Card className="card-plain">
                   <CardHeader>
                     <h1 className="profile-title text-left">Contact</h1>
-                    <h5 className="text-on-back">03</h5>
+                    <h5 className="text-on-back">02</h5>
                   </CardHeader>
                   <CardBody>
                     <Form>
                       <Row>
                         <Col md="6">
                           <FormGroup>
-                            <label>Your Name</label>
-                            <Input defaultValue="Mike" type="text" />
+                            <label>ชื่อ-นามสกุล (TH)</label>
+                            <Input
+                              defaultValue="Natthapol Aphaiso"
+                              type="text"
+                            />
+                          </FormGroup>
+                        </Col>
+                        <Col md="6">
+                          <FormGroup>
+                            <label>ชื่อ-นามสกุล (EN)</label>
+                            <Input
+                              defaultValue="Natthapol Aphaiso"
+                              type="text"
+                            />
+                          </FormGroup>
+                        </Col>
+                        <Col md="6">
+                          <FormGroup>
+                            <label>ชื่อเล่น</label>
+                            <Input defaultValue="ฟลุ๊ค" type="text" />
+                          </FormGroup>
+                        </Col>
+                        <Col md="6">
+                          <FormGroup>
+                            <label>เบอร์โทรศัพท์</label>
+                            <Input defaultValue="098-726-xxxx" type="text" />
+                          </FormGroup>
+                        </Col>
+                        <Col md="6">
+                          <FormGroup>
+                            <label>วันเกิด</label>
+                            <Input defaultValue="10/01/2544" type="text" />
                           </FormGroup>
                         </Col>
                         <Col md="6">
@@ -371,13 +401,28 @@ export default function ProfilePage() {
                       <Row>
                         <Col md="6">
                           <FormGroup>
-                            <label>Phone</label>
-                            <Input defaultValue="001-12321345" type="text" />
+                            <label>Facebook</label>
+                            <Input
+                              defaultValue="Natthapol Aphaiso"
+                              type="text"
+                            />
                           </FormGroup>
                         </Col>
                         <Col md="6">
                           <FormGroup>
-                            <label>Company</label>
+                            <label>Instagram</label>
+                            <Input defaultValue="CreativeTim" type="text" />
+                          </FormGroup>
+                        </Col>
+                        <Col md="6">
+                          <FormGroup>
+                            <label>Line</label>
+                            <Input defaultValue="CreativeTim" type="text" />
+                          </FormGroup>
+                        </Col>
+                        <Col md="6">
+                          <FormGroup>
+                            <label>Linked In</label>
                             <Input defaultValue="CreativeTim" type="text" />
                           </FormGroup>
                         </Col>
@@ -385,8 +430,86 @@ export default function ProfilePage() {
                       <Row>
                         <Col md="12">
                           <FormGroup>
-                            <label>Message</label>
-                            <Input placeholder="Hello there!" type="text" />
+                            <label>ที่อยู่</label>
+                            <Input
+                              placeholder="177 ม.7 ต.โนนหัน อ.ชุมแพ จ.ขอนแก่น 40290"
+                              type="text"
+                            />
+                          </FormGroup>
+                        </Col>
+                        <Col md="6">
+                          <FormGroup>
+                            <label>วุฒิการศึกษา</label>
+                            <Input placeholder="อุดมศึกษา" type="text" />
+                          </FormGroup>
+                        </Col>
+                        <Col md="6">
+                          <FormGroup>
+                            <label>สถานศึกษา</label>
+                            <Input placeholder="PIM" type="text" />
+                          </FormGroup>
+                        </Col>
+                        <Col md="12">
+                          <FormGroup>
+                            <label>คณะ/ สาขาวิชา</label>
+                            <Input
+                              placeholder="Engineering and Technology"
+                              type="text"
+                            />
+                          </FormGroup>
+                        </Col>
+                        <Col md="12">
+                          <FormGroup>
+                            <label>ความสามารถพิเศษ</label>
+                            <Input placeholder="1000WPM" type="text" />
+                          </FormGroup>
+                        </Col>
+                        <Col md="12">
+                          <FormGroup>
+                            <label>ประวัติการทำงาน</label>
+                            <Input
+                              placeholder="Software Architect"
+                              type="text"
+                            />
+                          </FormGroup>
+                        </Col>
+                        <Col md="12">
+                          <FormGroup>
+                            <label>ชื่อที่ทำงาน</label>
+                            <Input
+                              placeholder="YIP IN TSOI CO,. LIMITED"
+                              type="text"
+                            />
+                          </FormGroup>
+                        </Col>
+                        <Col md="6">
+                          <FormGroup>
+                            <label>ตำแหน่งงาน</label>
+                            <Input
+                              placeholder="Software Architect"
+                              type="text"
+                            />
+                          </FormGroup>
+                        </Col>
+                        <Col md="6">
+                          <FormGroup>
+                            <label>ระยะเวลาที่ทำงาน</label>
+                            <Input placeholder="2 ปี" type="text" />
+                          </FormGroup>
+                        </Col>
+                        <Col md="6">
+                          <FormGroup>
+                            <label>ตำแหน่งที่สนใจ</label>
+                            <Input
+                              placeholder="Software Architect"
+                              type="text"
+                            />
+                          </FormGroup>
+                        </Col>
+                        <Col md="6">
+                          <FormGroup>
+                            <label>เงินเดือนที่คาดหวัง</label>
+                            <Input placeholder="50,000" type="text" />
                           </FormGroup>
                         </Col>
                       </Row>
@@ -397,7 +520,7 @@ export default function ProfilePage() {
                         id="tooltip341148792"
                         type="button"
                       >
-                        Send text
+                        Save
                       </Button>
                       <UncontrolledTooltip
                         delay={0}
