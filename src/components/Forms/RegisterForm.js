@@ -416,9 +416,6 @@ export default function RegisterForm() {
                 target="ipop"
                 isOpen={filterZipCode.length > 0 ? popoverOpen : false}
                 id="customPopover"
-                toggle={() => {
-                  toggle()
-                }}
               >
                 <PopoverBody>
                   {filterZipCode.map((code) => {
@@ -428,6 +425,7 @@ export default function RegisterForm() {
                         key={code}
                         onClick={() => {
                           onSelectZip(code)
+                          setPopoverOpen(false)
                         }}
                       >
                         {code}
