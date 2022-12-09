@@ -36,11 +36,6 @@ import {
   Container,
   Row,
   Col,
-  Dropdown,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem,
-  UncontrolledDropdown,
 } from "reactstrap"
 import ReactDatetime from "react-datetime"
 
@@ -60,11 +55,11 @@ export default function RegisterPage() {
   const [igFocus, setIgFocus] = React.useState(false)
   const [lineFocus, setLineFocus] = React.useState(false)
   const [ldFocus, setLdFocus] = React.useState(false)
-  const [prov, setProv] = React.useState(false)
-  const [dist, setDist] = React.useState(false)
-  const [sDist, setSDist] = React.useState(false)
-  const [zipCode, setZipCode] = React.useState(false)
-
+  const [provFocus, setProvFocus] = React.useState(false)
+  const [distFocus, setDistFocus] = React.useState(false)
+  const [sDistFocus, setSDistFocus] = React.useState(false)
+  const [zipCodeFocus, setZipCodeFocus] = React.useState(false)
+  const [talent, setTalent] = React.useState("")
   React.useEffect(() => {
     document.body.classList.toggle("register-page")
     document.documentElement.addEventListener("mousemove", followCursor)
@@ -324,7 +319,7 @@ export default function RegisterPage() {
                               <Col lg="6" xs="6">
                                 <InputGroup
                                   className={classnames({
-                                    "input-group-focus": prov,
+                                    "input-group-focus": provFocus,
                                   })}
                                 >
                                   <InputGroupAddon addonType="prepend">
@@ -335,15 +330,15 @@ export default function RegisterPage() {
                                   <Input
                                     placeholder="จังหวัด"
                                     type="text"
-                                    onFocus={(e) => setProv(true)}
-                                    onBlur={(e) => setProv(false)}
+                                    onFocus={(e) => setProvFocus(true)}
+                                    onBlur={(e) => setProvFocus(false)}
                                   />
                                 </InputGroup>
                               </Col>
                               <Col lg="6" xs="6">
                                 <InputGroup
                                   className={classnames({
-                                    "input-group-focus": dist,
+                                    "input-group-focus": distFocus,
                                   })}
                                 >
                                   <InputGroupAddon addonType="prepend">
@@ -354,15 +349,15 @@ export default function RegisterPage() {
                                   <Input
                                     placeholder="อำเภอ"
                                     type="text"
-                                    onFocus={(e) => setDist(true)}
-                                    onBlur={(e) => setDist(false)}
+                                    onFocus={(e) => setDistFocus(true)}
+                                    onBlur={(e) => setDistFocus(false)}
                                   />
                                 </InputGroup>
                               </Col>
                               <Col lg="6" xs="6">
                                 <InputGroup
                                   className={classnames({
-                                    "input-group-focus": sDist,
+                                    "input-group-focus": sDistFocus,
                                   })}
                                 >
                                   <InputGroupAddon addonType="prepend">
@@ -373,15 +368,15 @@ export default function RegisterPage() {
                                   <Input
                                     placeholder="ตำบล"
                                     type="text"
-                                    onFocus={(e) => setSDist(true)}
-                                    onBlur={(e) => setSDist(false)}
+                                    onFocus={(e) => setSDistFocus(true)}
+                                    onBlur={(e) => setSDistFocus(false)}
                                   />
                                 </InputGroup>
                               </Col>
                               <Col lg="6" xs="6">
                                 <InputGroup
                                   className={classnames({
-                                    "input-group-focus": zipCode,
+                                    "input-group-focus": zipCodeFocus,
                                   })}
                                 >
                                   <InputGroupAddon addonType="prepend">
@@ -392,8 +387,8 @@ export default function RegisterPage() {
                                   <Input
                                     placeholder="รหัสไปรษณีย์"
                                     type="text"
-                                    onFocus={(e) => setZipCode(true)}
-                                    onBlur={(e) => setZipCode(false)}
+                                    onFocus={(e) => setZipCodeFocus(true)}
+                                    onBlur={(e) => setZipCodeFocus(false)}
                                   />
                                 </InputGroup>
                               </Col>
@@ -410,7 +405,7 @@ export default function RegisterPage() {
                               <Col lg="5">
                                 <InputGroup
                                   className={classnames({
-                                    "input-group-focus": prov,
+                                    "input-group-focus": provFocus,
                                   })}
                                 >
                                   <InputGroupAddon addonType="prepend">
@@ -421,15 +416,15 @@ export default function RegisterPage() {
                                   <Input
                                     placeholder="วุฒิการศึกษา"
                                     type="text"
-                                    onFocus={(e) => setProv(true)}
-                                    onBlur={(e) => setProv(false)}
+                                    onFocus={(e) => setProvFocus(true)}
+                                    onBlur={(e) => setProvFocus(false)}
                                   />
                                 </InputGroup>
                               </Col>
                               <Col lg="7">
                                 <InputGroup
                                   className={classnames({
-                                    "input-group-focus": dist,
+                                    "input-group-focus": distFocus,
                                   })}
                                 >
                                   <InputGroupAddon addonType="prepend">
@@ -440,15 +435,15 @@ export default function RegisterPage() {
                                   <Input
                                     placeholder="สถานศึกษา"
                                     type="text"
-                                    onFocus={(e) => setDist(true)}
-                                    onBlur={(e) => setDist(false)}
+                                    onFocus={(e) => setDistFocus(true)}
+                                    onBlur={(e) => setDistFocus(false)}
                                   />
                                 </InputGroup>
                               </Col>
                               <Col lg="12">
                                 <InputGroup
                                   className={classnames({
-                                    "input-group-focus": sDist,
+                                    "input-group-focus": sDistFocus,
                                   })}
                                 >
                                   <InputGroupAddon addonType="prepend">
@@ -459,15 +454,15 @@ export default function RegisterPage() {
                                   <Input
                                     placeholder="คณะ/สาขาวิชา"
                                     type="text"
-                                    onFocus={(e) => setSDist(true)}
-                                    onBlur={(e) => setSDist(false)}
+                                    onFocus={(e) => setSDistFocus(true)}
+                                    onBlur={(e) => setSDistFocus(false)}
                                   />
                                 </InputGroup>
                               </Col>
                               <Col lg="12">
                                 <InputGroup
                                   className={classnames({
-                                    "input-group-focus": zipCode,
+                                    "input-group-focus": zipCodeFocus,
                                   })}
                                 >
                                   <InputGroupAddon addonType="prepend">
@@ -476,17 +471,24 @@ export default function RegisterPage() {
                                     </InputGroupText>
                                   </InputGroupAddon>
                                   <Input
-                                    placeholder="ความสามารถพิเศษ"
-                                    type="text"
-                                    onFocus={(e) => setZipCode(true)}
-                                    onBlur={(e) => setZipCode(false)}
-                                  />
+                                    type="select"
+                                    onFocus={(e) => setZipCodeFocus(true)}
+                                    onBlur={(e) => setZipCodeFocus(false)}
+                                    onChange={(e) => setTalent(e.target.value)}
+                                  >
+                                    <option value="" disabled selected>
+                                      ความสามารถพิเศษ
+                                    </option>
+                                    <option>ดนตรี</option>
+                                    <option>กีฬา</option>
+                                    <option>งานบ้าน</option>
+                                  </Input>
                                 </InputGroup>
                               </Col>
                               <Col lg="12">
                                 <InputGroup
                                   className={classnames({
-                                    "input-group-focus": zipCode,
+                                    "input-group-focus": zipCodeFocus,
                                   })}
                                 >
                                   <InputGroupAddon addonType="prepend">
@@ -497,15 +499,15 @@ export default function RegisterPage() {
                                   <Input
                                     placeholder="ประวัติการทำงาน/ ฝึกงาน (ถ้ามี)"
                                     type="text"
-                                    onFocus={(e) => setZipCode(true)}
-                                    onBlur={(e) => setZipCode(false)}
+                                    onFocus={(e) => setZipCodeFocus(true)}
+                                    onBlur={(e) => setZipCodeFocus(false)}
                                   />
                                 </InputGroup>
                               </Col>
                               <Col lg="12">
                                 <InputGroup
                                   className={classnames({
-                                    "input-group-focus": zipCode,
+                                    "input-group-focus": zipCodeFocus,
                                   })}
                                 >
                                   <InputGroupAddon addonType="prepend">
@@ -516,15 +518,15 @@ export default function RegisterPage() {
                                   <Input
                                     placeholder="ชื่อที่ทำงาน"
                                     type="text"
-                                    onFocus={(e) => setZipCode(true)}
-                                    onBlur={(e) => setZipCode(false)}
+                                    onFocus={(e) => setZipCodeFocus(true)}
+                                    onBlur={(e) => setZipCodeFocus(false)}
                                   />
                                 </InputGroup>
                               </Col>
                               <Col lg="6">
                                 <InputGroup
                                   className={classnames({
-                                    "input-group-focus": zipCode,
+                                    "input-group-focus": zipCodeFocus,
                                   })}
                                 >
                                   <InputGroupAddon addonType="prepend">
@@ -535,15 +537,15 @@ export default function RegisterPage() {
                                   <Input
                                     placeholder="ตำแหน่งงาน"
                                     type="text"
-                                    onFocus={(e) => setZipCode(true)}
-                                    onBlur={(e) => setZipCode(false)}
+                                    onFocus={(e) => setZipCodeFocus(true)}
+                                    onBlur={(e) => setZipCodeFocus(false)}
                                   />
                                 </InputGroup>
                               </Col>
                               <Col lg="6">
                                 <InputGroup
                                   className={classnames({
-                                    "input-group-focus": zipCode,
+                                    "input-group-focus": zipCodeFocus,
                                   })}
                                 >
                                   <InputGroupAddon addonType="prepend">
@@ -554,15 +556,15 @@ export default function RegisterPage() {
                                   <Input
                                     placeholder="ระยะเวลาที่ทำงาน"
                                     type="text"
-                                    onFocus={(e) => setZipCode(true)}
-                                    onBlur={(e) => setZipCode(false)}
+                                    onFocus={(e) => setZipCodeFocus(true)}
+                                    onBlur={(e) => setZipCodeFocus(false)}
                                   />
                                 </InputGroup>
                               </Col>
                               <Col lg="12">
                                 <InputGroup
                                   className={classnames({
-                                    "input-group-focus": zipCode,
+                                    "input-group-focus": zipCodeFocus,
                                   })}
                                 >
                                   <InputGroupAddon addonType="prepend">
@@ -571,17 +573,23 @@ export default function RegisterPage() {
                                     </InputGroupText>
                                   </InputGroupAddon>
                                   <Input
-                                    placeholder="ตำแหน่งที่สนใจ"
-                                    type="text"
-                                    onFocus={(e) => setZipCode(true)}
-                                    onBlur={(e) => setZipCode(false)}
-                                  />
+                                    type="select"
+                                    onFocus={(e) => setZipCodeFocus(true)}
+                                    onBlur={(e) => setZipCodeFocus(false)}
+                                  >
+                                    <option value="" disabled selected>
+                                      ตำแหน่งที่สนใจ
+                                    </option>
+                                    <option>Software Developer</option>
+                                    <option>Software Tester</option>
+                                    <option>IT-Support</option>
+                                  </Input>
                                 </InputGroup>
                               </Col>
                               <Col lg="6">
                                 <InputGroup
                                   className={classnames({
-                                    "input-group-focus": zipCode,
+                                    "input-group-focus": zipCodeFocus,
                                   })}
                                 >
                                   <InputGroupAddon addonType="prepend">
@@ -592,8 +600,8 @@ export default function RegisterPage() {
                                   <Input
                                     placeholder="เงินเดือนที่คาดหวัง"
                                     type="text"
-                                    onFocus={(e) => setZipCode(true)}
-                                    onBlur={(e) => setZipCode(false)}
+                                    onFocus={(e) => setZipCodeFocus(true)}
+                                    onBlur={(e) => setZipCodeFocus(false)}
                                   />
                                 </InputGroup>
                               </Col>
