@@ -47,6 +47,7 @@ export default function RegisterForm() {
   const [filterZipCode, setFilterZipCode] = useState([])
   const [province, setProvince] = useState("")
   const [amphure, setAmphure] = useState("")
+  const [selectedZip, setSelectedZip] = useState("")
   const [tumbon, setTumbon] = useState([])
   useEffect(() => {
     fetch(
@@ -70,13 +71,15 @@ export default function RegisterForm() {
       zipcodeData.push(data.zip_code)
     }
     setFilterZipCode([...new Set(zipcodeData)])
-
+    setSelectedZip(event)
     if (event === "") {
       setFilterZipCode([])
     }
   }
 
   const onSelectZip = (event) => {
+    console.log("evnt", event)
+    setSelectedZip(event.toString())
     setTumbon(
       provinceData.filter((data, index) => {
         const zipcode = data.zip_code.toString()
@@ -382,7 +385,10 @@ export default function RegisterForm() {
                   type="text"
                   onFocus={(e) => setZipCodeFocus(true)}
                   onBlur={(e) => setZipCodeFocus(false)}
-                  onChange={(e) => onZipInputChange(e.target.value)}
+                  defaultValue={selectedZip}
+                  onChange={(e) => {
+                    onZipInputChange(e.target.value)
+                  }}
                 />
               </InputGroup>
               <div>
