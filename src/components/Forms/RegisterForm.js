@@ -385,7 +385,7 @@ export default function RegisterForm() {
                   type="text"
                   onFocus={(e) => setZipCodeFocus(true)}
                   onBlur={(e) => setZipCodeFocus(false)}
-                  defaultValue={selectedZip}
+                  value={selectedZip}
                   onChange={(e) => {
                     onZipInputChange(e.target.value)
                   }}
