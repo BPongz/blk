@@ -2,16 +2,19 @@
 @include form-control-placeholder(#6c757c, 1);
 
 .form-control {
-  color: $default;
+  //custom
+  // color: $default;
   border-color: lighten($black, 5%);
   border-radius: $border-radius-lg;
-  background-color: $white;
+  //custom
+  // background-color: $white;
   font-size: $font-size-sm;
   font-family: $font-family-kanit;
   @include transition-input-focus-color();
 
   &:focus {
-    color: $black;
+    //custom
+    // color: $black;
     border-color: $primary;
     background-color: $input-bg;
     @include box-shadow(none);
@@ -126,4 +129,8 @@
   &.form-check .form-check-label {
     color: $danger-states;
   }
+}
+
+option {
+  color: $white;
 }

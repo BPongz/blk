@@ -313,74 +313,6 @@ export default function RegisterForm() {
             </Col>
             <Col lg="6" xs="6">
               <InputGroup
-                className={classnames({
-                  "input-group-focus": provFocus,
-                })}
-              >
-                <InputGroupAddon addonType="prepend">
-                  <InputGroupText>
-                    <i className="tim-icons icon-square-pin" />
-                  </InputGroupText>
-                </InputGroupAddon>
-                <Input
-                  placeholder="จังหวัด"
-                  type="text"
-                  onFocus={(e) => setProvFocus(true)}
-                  onBlur={(e) => setProvFocus(false)}
-                  value={province}
-                />
-              </InputGroup>
-            </Col>
-            <Col lg="6" xs="6">
-              <InputGroup
-                className={classnames({
-                  "input-group-focus": distFocus,
-                })}
-              >
-                <InputGroupAddon addonType="prepend">
-                  <InputGroupText>
-                    <i className="tim-icons icon-square-pin" />
-                  </InputGroupText>
-                </InputGroupAddon>
-                <Input
-                  placeholder="อำเภอ"
-                  type="text"
-                  onFocus={(e) => setDistFocus(true)}
-                  onBlur={(e) => setDistFocus(false)}
-                  value={amphure}
-                />
-              </InputGroup>
-            </Col>
-            <Col lg="6" xs="6">
-              <InputGroup
-                className={classnames({
-                  "input-group-focus": zipCodeFocus,
-                })}
-              >
-                <InputGroupAddon addonType="prepend">
-                  <InputGroupText>
-                    <i className="tim-icons icon-square-pin" />
-                  </InputGroupText>
-                </InputGroupAddon>
-                <Input
-                  type="select"
-                  onFocus={(e) => setZipCodeFocus(true)}
-                  onBlur={(e) => setZipCodeFocus(false)}
-                  onChange={(e) => setSelectedTal(e.target.value)}
-                  disabled={tumbon.length === 0}
-                  defaultValue="0"
-                >
-                  <option value="0" disabled>
-                    ตำบล
-                  </option>
-                  {tumbon.map((code) => {
-                    return <option key={code.name_th}>{code.name_th}</option>
-                  })}
-                </Input>
-              </InputGroup>
-            </Col>
-            <Col lg="6" xs="6">
-              <InputGroup
                 id="bt"
                 className={classnames({
                   "input-group-focus": zipCodeFocus,
@@ -434,6 +366,74 @@ export default function RegisterForm() {
                   })}
                 </PopoverBody>
               </Popover>
+            </Col>
+            <Col lg="6" xs="6">
+              <InputGroup
+                className={classnames({
+                  "input-group-focus": zipCodeFocus,
+                })}
+              >
+                <InputGroupAddon addonType="prepend">
+                  <InputGroupText>
+                    <i className="tim-icons icon-square-pin" />
+                  </InputGroupText>
+                </InputGroupAddon>
+                <Input
+                  type="select"
+                  onFocus={(e) => setZipCodeFocus(true)}
+                  onBlur={(e) => setZipCodeFocus(false)}
+                  onChange={(e) => setSelectedTal(e.target.value)}
+                  disabled={tumbon.length === 0}
+                  defaultValue="0"
+                >
+                  <option value="0" disabled>
+                    ตำบล
+                  </option>
+                  {tumbon.map((code) => {
+                    return <option key={code.name_th}>{code.name_th}</option>
+                  })}
+                </Input>
+              </InputGroup>
+            </Col>
+            <Col lg="6" xs="6">
+              <InputGroup
+                className={classnames({
+                  "input-group-focus": distFocus,
+                })}
+              >
+                <InputGroupAddon addonType="prepend">
+                  <InputGroupText>
+                    <i className="tim-icons icon-square-pin" />
+                  </InputGroupText>
+                </InputGroupAddon>
+                <Input
+                  placeholder="อำเภอ"
+                  type="text"
+                  onFocus={(e) => setDistFocus(true)}
+                  onBlur={(e) => setDistFocus(false)}
+                  value={amphure}
+                />
+              </InputGroup>
+            </Col>
+            <Col lg="6" xs="6">
+              <InputGroup
+                className={classnames({
+                  "input-group-focus": provFocus,
+                })}
+              >
+                <InputGroupAddon addonType="prepend">
+                  <InputGroupText>
+                    <i className="tim-icons icon-square-pin" />
+                  </InputGroupText>
+                </InputGroupAddon>
+                <Input
+                  placeholder="จังหวัด"
+                  type="text"
+                  onFocus={(e) => setProvFocus(true)}
+                  onBlur={(e) => setProvFocus(false)}
+                  value={province}
+                />
+              </InputGroup>
             </Col>
           </Row>
         </Col>
