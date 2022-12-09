@@ -15,10 +15,10 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
-import React from "react";
-import classnames from "classnames";
+import React from "react"
+import classnames from "classnames"
 // javascript plugin used to create scrollbars on windows
-import PerfectScrollbar from "perfect-scrollbar";
+import PerfectScrollbar from "perfect-scrollbar"
 // reactstrap components
 import {
   Button,
@@ -40,58 +40,59 @@ import {
   Row,
   Col,
   UncontrolledTooltip,
-  UncontrolledCarousel
-} from "reactstrap";
+  UncontrolledCarousel,
+} from "reactstrap"
 
 // core components
-import ExamplesNavbar from "components/Navbars/ExamplesNavbar.js";
-import Footer from "components/Footer/Footer.js";
+import ExamplesNavbar from "components/Navbars/ExamplesNavbar.js"
+import Footer from "components/Footer/Footer.js"
+import IndexNavbar from "components/Navbars/IndexNavbar"
 
 const carouselItems = [
   {
     src: require("assets/img/denys.jpg"),
     altText: "Slide 1",
-    caption: "Big City Life, United States"
+    caption: "Big City Life, United States",
   },
   {
     src: require("assets/img/fabien-bazanegue.jpg"),
     altText: "Slide 2",
-    caption: "Somewhere Beyond, United States"
+    caption: "Somewhere Beyond, United States",
   },
   {
     src: require("assets/img/mark-finn.jpg"),
     altText: "Slide 3",
-    caption: "Stocks, United States"
-  }
-];
+    caption: "Stocks, United States",
+  },
+]
 
-let ps = null;
+let ps = null
 
 export default function ProfilePage() {
-  const [tabs, setTabs] = React.useState(1);
+  const [tabs, setTabs] = React.useState(1)
   React.useEffect(() => {
     if (navigator.platform.indexOf("Win") > -1) {
-      document.documentElement.className += " perfect-scrollbar-on";
-      document.documentElement.classList.remove("perfect-scrollbar-off");
-      let tables = document.querySelectorAll(".table-responsive");
+      document.documentElement.className += " perfect-scrollbar-on"
+      document.documentElement.classList.remove("perfect-scrollbar-off")
+      let tables = document.querySelectorAll(".table-responsive")
       for (let i = 0; i < tables.length; i++) {
-        ps = new PerfectScrollbar(tables[i]);
+        ps = new PerfectScrollbar(tables[i])
       }
     }
-    document.body.classList.toggle("profile-page");
+    document.body.classList.toggle("profile-page")
     // Specify how to clean up after this effect:
     return function cleanup() {
       if (navigator.platform.indexOf("Win") > -1) {
-        ps.destroy();
-        document.documentElement.className += " perfect-scrollbar-off";
-        document.documentElement.classList.remove("perfect-scrollbar-on");
+        ps.destroy()
+        document.documentElement.className += " perfect-scrollbar-off"
+        document.documentElement.classList.remove("perfect-scrollbar-on")
       }
-      document.body.classList.toggle("profile-page");
-    };
-  }, []);
+      document.body.classList.toggle("profile-page")
+    }
+  }, [])
   return (
     <>
-      <ExamplesNavbar />
+      <IndexNavbar />
       <div className="wrapper">
         <div className="page-header">
           <img
@@ -107,7 +108,7 @@ export default function ProfilePage() {
           <Container className="align-items-center">
             <Row>
               <Col lg="6" md="6">
-                <h1 className="profile-title text-left">Mike Scheinder</h1>
+                <h1 className="profile-title text-left">Natthapol Aphaiso</h1>
                 <h5 className="text-on-back">01</h5>
                 <p className="profile-description">
                   Offices parties lasting outward nothing age few resolve.
@@ -172,11 +173,11 @@ export default function ProfilePage() {
                       <NavItem>
                         <NavLink
                           className={classnames({
-                            active: tabs === 1
+                            active: tabs === 1,
                           })}
                           onClick={(e) => {
-                            e.preventDefault();
-                            setTabs(1);
+                            e.preventDefault()
+                            setTabs(1)
                           }}
                           href="#pablo"
                         >
@@ -186,11 +187,11 @@ export default function ProfilePage() {
                       <NavItem>
                         <NavLink
                           className={classnames({
-                            active: tabs === 2
+                            active: tabs === 2,
                           })}
                           onClick={(e) => {
-                            e.preventDefault();
-                            setTabs(2);
+                            e.preventDefault()
+                            setTabs(2)
                           }}
                           href="#pablo"
                         >
@@ -200,11 +201,11 @@ export default function ProfilePage() {
                       <NavItem>
                         <NavLink
                           className={classnames({
-                            active: tabs === 3
+                            active: tabs === 3,
                           })}
                           onClick={(e) => {
-                            e.preventDefault();
-                            setTabs(3);
+                            e.preventDefault()
+                            setTabs(3)
                           }}
                           href="#pablo"
                         >
@@ -443,5 +444,5 @@ export default function ProfilePage() {
         <Footer />
       </div>
     </>
-  );
+  )
 }

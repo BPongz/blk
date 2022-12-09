@@ -38,6 +38,7 @@ import {
 import ExamplesNavbar from "components/Navbars/ExamplesNavbar.js"
 import Footer from "components/Footer/Footer.js"
 import RegisterForm from "components/Forms/RegisterForm.js"
+import IndexNavbar from "components/Navbars/IndexNavbar"
 
 export default function RegisterPage() {
   const [squares1to6, setSquares1to6] = React.useState("")
@@ -71,7 +72,7 @@ export default function RegisterPage() {
   }
   return (
     <>
-      <ExamplesNavbar />
+      <IndexNavbar />
       <div className="wrapper">
         <div className="page-header-register">
           <div className="page-header-image" />

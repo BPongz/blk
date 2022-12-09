@@ -15,8 +15,8 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
-import React from "react";
-import { Link } from "react-router-dom";
+import React from "react"
+import { Link } from "react-router-dom"
 // reactstrap components
 import {
   Button,
@@ -33,49 +33,150 @@ import {
   Container,
   Row,
   Col,
-  UncontrolledTooltip
-} from "reactstrap";
+  UncontrolledTooltip,
+  formModal,
+  Input,
+  Label,
+  Form,
+  Modal,
+  FormGroup,
+  InputGroup,
+  InputGroupText,
+  InputGroupAddon,
+} from "reactstrap"
+import classnames from "classnames"
 
 export default function IndexNavbar() {
-  const [collapseOpen, setCollapseOpen] = React.useState(false);
-  const [collapseOut, setCollapseOut] = React.useState("");
-  const [color, setColor] = React.useState("navbar-transparent");
+  const [collapseOpen, setCollapseOpen] = React.useState(false)
+  const [collapseOut, setCollapseOut] = React.useState("")
+  const [color, setColor] = React.useState("navbar-transparent")
+  const [formModal, setFormModal] = React.useState(false)
+  const [emailFocus, setEmailFocus] = React.useState(false)
+  const [passwordFocus, setPasswordFocus] = React.useState(false)
+
   React.useEffect(() => {
-    window.addEventListener("scroll", changeColor);
+    window.addEventListener("scroll", changeColor)
     return function cleanup() {
-      window.removeEventListener("scroll", changeColor);
-    };
-  }, []);
+      window.removeEventListener("scroll", changeColor)
+    }
+  }, [])
   const changeColor = () => {
     if (
       document.documentElement.scrollTop > 99 ||
       document.body.scrollTop > 99
     ) {
-      setColor("bg-info");
+      setColor("bg-info")
     } else if (
       document.documentElement.scrollTop < 100 ||
       document.body.scrollTop < 100
     ) {
-      setColor("navbar-transparent");
+      setColor("navbar-transparent")
     }
-  };
+  }
   const toggleCollapse = () => {
-    document.documentElement.classList.toggle("nav-open");
-    setCollapseOpen(!collapseOpen);
-  };
+    document.documentElement.classList.toggle("nav-open")
+    setCollapseOpen(!collapseOpen)
+  }
   const onCollapseExiting = () => {
-    setCollapseOut("collapsing-out");
-  };
+    setCollapseOut("collapsing-out")
+  }
   const onCollapseExited = () => {
-    setCollapseOut("");
-  };
-  const scrollToDownload = () => {
-    document
-      .getElementById("download-section")
-      .scrollIntoView({ behavior: "smooth" });
-  };
+    setCollapseOut("")
+  }
+
   return (
     <Navbar className={"fixed-top " + color} color-on-scroll="100" expand="lg">
+      {/* Start Form Modal */}
+      <Modal
+        modalClassName="modal-black"
+        isOpen={formModal}
+        toggle={() => setFormModal(false)}
+      >
+        <div className="modal-header justify-content-center">
+          <button className="close" onClick={() => setFormModal(false)}>
+            <i className="tim-icons icon-simple-remove text-white" />
+          </button>
+          <div className="text-muted text-center ml-auto mr-auto">
+            <h3 className="mb-0">Sign in with</h3>
+          </div>
+        </div>
+        <div className="modal-body">
+          <div className="btn-wrapper text-center">
+            <Button
+              className="btn-neutral btn-icon"
+              color="default"
+              href="#pablo"
+              onClick={(e) => e.preventDefault()}
+            >
+              <img alt="..." src={require("assets/img/github.svg")} />
+            </Button>
+            <Button
+              className="btn-neutral btn-icon"
+              color="default"
+              href="#pablo"
+              onClick={(e) => e.preventDefault()}
+            >
+              <img alt="..." src={require("assets/img/google.svg")} />
+            </Button>
+          </div>
+          <div className="text-center text-muted mb-4 mt-3">
+            <small>Or sign in with credentials</small>
+          </div>
+          <Form role="form">
+            <FormGroup className="mb-3">
+              <InputGroup
+                className={classnames("input-group-alternative", {
+                  "input-group-focus": emailFocus,
+                })}
+              >
+                <InputGroupAddon addonType="prepend">
+                  <InputGroupText>
+                    <i className="tim-icons icon-email-85" />
+                  </InputGroupText>
+                </InputGroupAddon>
+                <Input
+                  placeholder="Email"
+                  type="email"
+                  onFocus={(e) => setEmailFocus(true)}
+                  onBlur={(e) => setEmailFocus(false)}
+                />
+              </InputGroup>
+            </FormGroup>
+            <FormGroup>
+              <InputGroup
+                className={classnames("input-group-alternative", {
+                  "input-group-focus": passwordFocus,
+                })}
+              >
+                <InputGroupAddon addonType="prepend">
+                  <InputGroupText>
+                    <i className="tim-icons icon-key-25" />
+                  </InputGroupText>
+                </InputGroupAddon>
+                <Input
+                  placeholder="Password"
+                  type="password"
+                  onFocus={(e) => setPasswordFocus(true)}
+                  onBlur={(e) => setPasswordFocus(false)}
+                />
+              </InputGroup>
+            </FormGroup>
+            <FormGroup check className="mt-3">
+              <Label check>
+                <Input defaultChecked type="checkbox" />
+                <span className="form-check-sign" />
+                Remember me!
+              </Label>
+            </FormGroup>
+            <div className="text-center">
+              <Button className="my-4" color="primary" type="button">
+                Sign in
+              </Button>
+            </div>
+          </Form>
+        </div>
+      </Modal>
+      {/* End Form Modal */}
       <Container>
         <div className="navbar-translate">
           <NavbarBrand to="/" tag={Link} id="navbar-brand">
@@ -167,23 +268,11 @@ export default function IndexNavbar() {
                 onClick={(e) => e.preventDefault()}
               >
                 <i className="fa fa-cogs d-lg-none d-xl-none" />
-                Getting started
+                Profile
               </DropdownToggle>
               <DropdownMenu className="dropdown-with-icons">
-                <DropdownItem href="https://demos.creative-tim.com/blk-design-system-react/#/documentation/overview">
-                  <i className="tim-icons icon-paper" />
-                  Documentation
-                </DropdownItem>
-                <DropdownItem tag={Link} to="/register-page">
-                  <i className="tim-icons icon-bullet-list-67" />
-                  Register Page
-                </DropdownItem>
-                <DropdownItem tag={Link} to="/landing-page">
-                  <i className="tim-icons icon-image-02" />
-                  Landing Page
-                </DropdownItem>
                 <DropdownItem tag={Link} to="/profile-page">
-                  <i className="tim-icons icon-single-02" />
+                  <i className="tim-icons icon-bullet-list-67" />
                   Profile Page
                 </DropdownItem>
               </DropdownMenu>
@@ -192,24 +281,24 @@ export default function IndexNavbar() {
               <Button
                 className="nav-link d-none d-lg-block"
                 color="primary"
-                target="_blank"
-                href="https://www.creative-tim.com/product/blk-design-system-pro-react?ref=bdsr-user-archive-index-navbar-upgrade-pro"
+                onClick={() => setFormModal(true)}
               >
-                <i className="tim-icons icon-spaceship" /> Upgrade to PRO
+                <i className="tim-icons icon-single-02" /> Login
               </Button>
             </NavItem>
             <NavItem>
               <Button
                 className="nav-link d-none d-lg-block"
                 color="default"
-                onClick={scrollToDownload}
+                to="/register-page"
+                tag={Link}
               >
-                <i className="tim-icons icon-cloud-download-93" /> Download
+                <i className="tim-icons icon-paper" /> Register
               </Button>
             </NavItem>
           </Nav>
         </Collapse>
       </Container>
     </Navbar>
-  );
+  )
 }

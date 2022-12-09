@@ -12,6 +12,7 @@ import {
   Col,
   UncontrolledPopover,
   PopoverBody,
+  Popover,
 } from "reactstrap"
 import ReactDatetime from "react-datetime"
 import Select from "react-select"
@@ -107,6 +108,10 @@ export default function RegisterForm() {
   }
   const handleTal = (e) => {
     setSelectedTal(e)
+  }
+
+  const toggle = () => {
+    setPopoverOpen(!popoverOpen)
   }
 
   return (
@@ -363,8 +368,9 @@ export default function RegisterForm() {
                   onBlur={(e) => setZipCodeFocus(false)}
                   onChange={(e) => setSelectedTal(e.target.value)}
                   disabled={tumbon.length === 0}
+                  defaultValue="0"
                 >
-                  <option value="" disabled selected>
+                  <option value="0" disabled>
                     ตำบล
                   </option>
                   {tumbon.map((code) => {
@@ -389,26 +395,30 @@ export default function RegisterForm() {
                   placeholder="รหัสไปรษณีย์"
                   type="text"
                   data-container="body"
+                  id="ipop"
                   onFocus={(e) => {
                     setZipCodeFocus(true)
                   }}
-                  onBlur={(e) => {
+                  onBlur={() => {
                     setZipCodeFocus(false)
-                    setPopoverOpen(false)
                   }}
                   value={selectedZip}
                   onChange={(e) => {
                     onZipInputChange(e.target.value)
-                    setPopoverOpen(true)
                   }}
-
+                  onKeyDown={() => {
+                    setPopoverOpen(filterZipCode.length > 0)
+                  }}
                 />
               </InputGroup>
-              <UncontrolledPopover
+              <Popover
                 placement="bottom"
-                target="bt"
+                target="ipop"
                 isOpen={filterZipCode.length > 0 ? popoverOpen : false}
                 id="customPopover"
+                toggle={() => {
+                  toggle()
+                }}
               >
                 <PopoverBody>
                   {filterZipCode.map((code) => {
@@ -425,7 +435,7 @@ export default function RegisterForm() {
                     )
                   })}
                 </PopoverBody>
-              </UncontrolledPopover>
+              </Popover>
             </Col>
           </Row>
         </Col>
@@ -579,30 +589,14 @@ export default function RegisterForm() {
               </InputGroup>
             </Col>
             <Col lg="12">
-              <InputGroup
-                className={classnames({
-                  "input-group-focus": zipCodeFocus,
-                })}
-              >
-                <InputGroupAddon addonType="prepend">
-                  <InputGroupText>
-                    <i className="tim-icons icon-square-pin" />
-                  </InputGroupText>
-                </InputGroupAddon>
-                <Input
-                  type="select"
-                  onFocus={(e) => setZipCodeFocus(true)}
-                  onBlur={(e) => setZipCodeFocus(false)}
-                  onChange={(e) => setSelectedTal(e.target.value)}
-                >
-                  <option value="" disabled selected>
-                    ความสามารถพิเศษ
-                  </option>
-                  <option>ดนตรี</option>
-                  <option>กีฬา</option>
-                  <option>งานบ้าน</option>
-                </Input>
-              </InputGroup>
+              <Select
+                className="Selector"
+                placeholder="ตำแหน่งที่สนใจ"
+                value={selectedPos} // set selected value
+                options={position} // set list of the data
+                onChange={handlePos} // assign onChange function
+                isOptionDisabled={(option) => option.isdisabled} // disable an option
+              />
             </Col>
             <Col lg="6">
               <InputGroup
