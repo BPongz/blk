@@ -165,7 +165,7 @@
 .form-control[disabled],
 .form-control[readonly],
 fieldset[disabled] .form-control {
-    background-color: $black-states;
+    background-color: $white;
     color: $default;
     cursor: not-allowed;
 }
@@ -349,4 +349,17 @@ textarea.form-control {
     font-family: $font-family-kanit;
     margin-bottom: 10px;
     border-radius: $border-radius-lg;
+}
+
+#customPopover {
+    height: 100px;
+    width: 10vw;
+    overflow: auto;
+    padding: 0.5rem;
+    p {
+        padding: 5px;
+    }
+    p:hover {
+        background-color: $light-gray;
+    }
 }

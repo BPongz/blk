@@ -10,6 +10,8 @@ import {
   InputGroup,
   Row,
   Col,
+  UncontrolledPopover,
+  PopoverBody,
 } from "reactstrap"
 import ReactDatetime from "react-datetime"
 import Select from "react-select"
@@ -30,6 +32,7 @@ export default function RegisterForm() {
   const [zipCodeFocus, setZipCodeFocus] = React.useState(false)
   const [selectedTal, setSelectedTal] = useState(null)
   const [selectedPos, setSelectedPos] = useState(null)
+  const [popoverOpen, setPopoverOpen] = React.useState(false)
   const talent = [
     { value: "1", label: "ดนตรี" },
     { value: "2", label: "กีฬา" },
@@ -49,6 +52,7 @@ export default function RegisterForm() {
   const [amphure, setAmphure] = useState("")
   const [selectedZip, setSelectedZip] = useState("")
   const [tumbon, setTumbon] = useState([])
+
   useEffect(() => {
     fetch(
       "https://raw.githubusercontent.com/kongvut/thai-province-data/master/api_revert_tambon_with_amphure_province.json"
@@ -371,6 +375,7 @@ export default function RegisterForm() {
             </Col>
             <Col lg="6" xs="6">
               <InputGroup
+                id="bt"
                 className={classnames({
                   "input-group-focus": zipCodeFocus,
                 })}
@@ -383,31 +388,44 @@ export default function RegisterForm() {
                 <Input
                   placeholder="รหัสไปรษณีย์"
                   type="text"
-                  onFocus={(e) => setZipCodeFocus(true)}
-                  onBlur={(e) => setZipCodeFocus(false)}
+                  data-container="body"
+                  onFocus={(e) => {
+                    setZipCodeFocus(true)
+                  }}
+                  onBlur={(e) => {
+                    setZipCodeFocus(false)
+                    setPopoverOpen(false)
+                  }}
                   value={selectedZip}
                   onChange={(e) => {
                     onZipInputChange(e.target.value)
+                    setPopoverOpen(true)
                   }}
+
                 />
               </InputGroup>
-              <div>
-                <ul>
+              <UncontrolledPopover
+                placement="bottom"
+                target="bt"
+                isOpen={filterZipCode.length > 0 ? popoverOpen : false}
+                id="customPopover"
+              >
+                <PopoverBody>
                   {filterZipCode.map((code) => {
                     return (
-                      <li
-                        style={{ color: "black" }}
+                      <p
+                        style={{ color: "black", cursor: "pointer" }}
                         key={code}
                         onClick={() => {
                           onSelectZip(code)
                         }}
                       >
                         {code}
-                      </li>
+                      </p>
                     )
                   })}
-                </ul>
-              </div>
+                </PopoverBody>
+              </UncontrolledPopover>
             </Col>
           </Row>
         </Col>
