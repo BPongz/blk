@@ -4,6 +4,7 @@
 .rdt {
   position: relative;
   .rdtPicker {
+    color: $blue;
     -webkit-transition: all 150ms linear;
     -moz-transition: all 150ms linear;
     -o-transition: all 150ms linear;
@@ -287,6 +288,7 @@ td.rdtYear:hover {
 }
 
 .rdtCounters {
+  color: $blue;
   display: inline-block;
 }
 
